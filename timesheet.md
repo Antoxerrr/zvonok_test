@@ -7,15 +7,17 @@ from collections import defaultdict
 class Record:
 
     def __init__(self):
-        self.history = []
-        self.sum = 0
+        self.history: list[int] = []
     
     def add(self, hours: int):
         self.history.append(hours)
-        self.sum += hours
-    
+
     @property
-    def history_verbose(self):
+    def sum(self):
+        return sum(self.history)
+
+    @property
+    def history_verbose(self) -> str:
         return ', '.join(str(i) for i in self.history)
 
 
@@ -55,5 +57,3 @@ X Æ A-12 45
 ```
 
 Тут ещё многое может зависеть от формата входных данных и от самого источника (файл, stdin), но я сделал самый простой вариант.
-
-Атрибут `sum` у класса `Record` можно было бы убрать, и использовать функцию `sum(self.history)`
